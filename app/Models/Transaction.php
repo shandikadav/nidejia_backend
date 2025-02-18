@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Model\Listing;
+use App\Models\Listing;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,7 +24,7 @@ class Transaction extends Model
         'status'
     ];
 
-    public function setListingIdAttributes($value) {
+    public function setListingIdAttribute($value) {
         $listing = Listing::find($value);
         $totalDays = Carbon::createFromDate($this->attributes['start_date'])->diffInDays($this->attributes['end_date']) + 1;
         $totalPrice = $listing->price_per_day * $totalDays;
